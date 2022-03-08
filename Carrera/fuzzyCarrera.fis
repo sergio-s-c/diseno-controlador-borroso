@@ -1,0 +1,60 @@
+[System]
+Name='fuzzyPRO8'
+Type='mamdani'
+Version=2.0
+NumInputs=4
+NumOutputs=2
+NumRules=3
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='sonar1'
+Range=[0 5]
+NumMFs=2
+MF1='cerca':'zmf',[0.33 1]
+MF2='lejos':'smf',[0.33 1]
+
+[Input2]
+Name='sonar2'
+Range=[0 5]
+NumMFs=2
+MF1='cerca':'zmf',[1 2.5]
+MF2='lejos':'smf',[1 2.5]
+
+[Input3]
+Name='sonar3'
+Range=[0 5]
+NumMFs=2
+MF1='cerca':'zmf',[1 2]
+MF2='lejos':'smf',[1 2]
+
+[Input4]
+Name='sonar4'
+Range=[0 5]
+NumMFs=2
+MF1='cerca':'zmf',[0.1 1]
+MF2='lejos':'smf',[0.1 1]
+
+[Output1]
+Name='V'
+Range=[0.9 1]
+NumMFs=2
+MF1='lento':'trapmf',[0.9 0.9 0.975 1]
+MF2='rapido':'trapmf',[0.975 1 1 1]
+
+[Output2]
+Name='W'
+Range=[-1 1]
+NumMFs=3
+MF1='derecha':'trimf',[-1.833 -1 -0.5]
+MF2='recto':'trapmf',[-1 -0.5 0.5 1]
+MF3='izquierda':'trimf',[0.5 1 1.833]
+
+[Rules]
+2 2 2 2, 2 2 (1) : 1
+1 1 0 0, 1 1 (1) : 2
+0 0 1 1, 1 3 (1) : 2
